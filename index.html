@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Альфа-школа - Школьные предметы понятным языком</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+		
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a365d;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Шапка и баннер */
+        .top-banner {
+            background: linear-gradient(135deg, #1a365d 0%, #2d5aa0 100%);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            font-weight: 600;
+        }
+        .header {
+            padding: 25px 0;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;            align-items: center;
+
+        }
+		.logo img {
+			height: 40px;
+			width: auto;
+			vertical-align: middle;
+		}
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .logo span {
+            color: #4299e1;
+        }
+        .nav a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .nav a:hover {
+            color: #1a365d;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, #4299e1, #3182ce);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11);
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1);
+        }
+        .hero {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23f1f5f9" width="100" height="100"/><path fill="%23e2e8f0" d="M0 0h50v50H0z"/></svg>');
+            padding: 80px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .hero h1 span {
+            color: #4299e1;
+            display: block;
+            font-weight: 800;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #4a5568;
+        }
+        /* Основные секции */
+        section {
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+        .benefits-grid, .stats-grid, .tutors-grid, .reviews-grid, .faq-grid, .prospects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .benefit-card, .stat-card, .tutor-card, .review-card, .faq-item, .prospect-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .benefit-card:hover, .tutor-card:hover, .prospect-card:hover {
+            transform: translateY(-5px);
+        }
+        .benefit-card h3, .faq-item h3 {
+            color: #2d5aa0;
+            font-size: 1.5rem;
+        }
+        .benefit-icon, .stat-icon {
+            font-size: 2.5rem;
+            color: #4299e1;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1a365d;
+            display: block;
+            line-height: 1;
+        }
+        .stat-text {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+        /* Карточки репетиторов */
+        .tutor-card {
+            text-align: center;
+        }
+        .tutor-avatar {
+            width: 120px;
+            height: 120px;
+            background: #e2e8f0;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #4a5568;
+        }
+        .tutor-subject {
+            display: inline-block;
+            background: #bee3f8;
+            color: #2c5282;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .tutor-rating {
+            color: #f6ad55;
+            margin: 10px 0;
+        }
+        /* Отзывы */
+        .review-card {
+            position: relative;
+        }
+        .review-rating {
+            color: #f6ad55;
+            margin-bottom: 10px;
+        }
+        .review-author {
+            font-weight: 700;
+            margin-top: 20px;
+            color: #1a365d;
+        }
+        .review-source {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        /* Секция "почему мы" */
+        .why-us {
+            background: #f1f5f9;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        .feature-item {
+            text-align: center;
+            padding: 25px;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #4299e1;
+            margin-bottom: 15px;
+        }
+        /* Бегущая строка */
+        .marquee {
+            background: #1a365d;
+            color: white;
+            padding: 20px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 40s linear infinite;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .marquee-content span {
+            color: #4299e1;
+            margin: 0 10px;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        /* Секция финансирования */
+        .finance-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .finance-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        /* Форма */
+        .application-form {
+            background: white;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: #4299e1;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        /* Футер */
+        .footer {
+            background: #1a365d;
+            color: #cbd5e0;
+            padding: 60px 0 30px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-title {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #4299e1;
+        }
+        .footer-links a {
+            display: block;
+            color: #cbd5e0;
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: #4299e1;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #2d3748;
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .nav a {
+                margin: 0 10px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        .subject-tag {
+            display: inline-block;
+            background: #e6fffa;
+            color: #285e61;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin: 3px;
+            border: 1px solid #81e6d9;
+        }
+        .highlight {
+            background-color: #fff9db;
+            padding: 3px 8px;
+            border-radius: 4px;
+            border-left: 4px solid #f6ad55;
+        }
+    </style>
+</head>
+<body>
+    <!-- Верхний баннер -->
+    <div class="top-banner">
+        <div class="container">
+            <i class="fas fa-gift"></i> Дарим первый урок с репетитором бесплатно! Оставьте заявку и получите первый урок в подарок
+        </div>
+    </div>
+
+    <!-- Шапка с навигацией -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="#" class="logo">
+    <img src="img/logo_book.png" alt="Альфа Школа - Все школьные предметы понятным языком" style="height: 40px;">
+</a>
+            <nav class="nav">
+                <a href="#">Главная</a>
+                <a href="#">Предметы</a>
+                <a href="#">Репититоры</a>
+                <a href="#">Цены</a>
+                <a href="#">Отзывы</a>
+                <a href="#">О школе</a>
+                <a href="#">Контакты</a>
+            </nav>
+            <a href="#application" class="cta-button">Записаться на урок</a>
+        </div>
+    </header>
+
+    <!-- Главный баннер -->
+    <section class="hero">
+        <div class="container">
+            <h1>Все школьные предметы <span>понятным языком</span></h1>
+            <p>Индивидуальные онлайн-занятия с репетиторами высшего уровня. Более 1300 готовых уроков с элементами искусственного интеллекта в учебной среде без отвлекающих факторов.</p>
+            <a href="#application" class="cta-button">Получить первый урок бесплатно</a>
+        </div>
+    </section>
+
+    <!-- Альфа-школа — выбор №1 -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Альфа-школа — выбор №1 для тех, кто:</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-globe-americas"></i></div>
+                    <h3>Переезжает в другую страну</h3>
+                    <p>Поможем адаптироваться к новой школьной программе и не отстать от сверстников.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Хочет подтянуть свои знания</h3>
+                    <p>Ликвидируем пробелы в знаниях по любому предмету школьной программы.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-university"></i></div>
+                    <h3>Поступает в ВУЗ</h3>
+                    <p>Эффективная подготовка к ЕГЭ и ОГЭ с лучшими репетиторами страны.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-child"></i></div>
+                    <h3>Даёт лучшее своему ребёнку</h3>
+                    <p>Индивидуальный подход и современные методики обучения для ваших детей.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Что дает вводный урок? -->
+    <section style="background-color: #f0f9ff;">
+        <div class="container">
+            <h2 class="section-title">Что дает вводный урок?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-search"></i></div>
+                    <h3>Полная диагностика знаний ученика</h3>
+                    <p>Определим уровень знаний и выявим пробелы в обучении.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <h3>Подробный план устранения пробелов</h3>
+                    <p>Составим индивидуальную программу обучения на основе диагностики.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-laptop-house"></i></div>
+                    <h3>Знакомство с платформой</h3>
+                    <p>Покажем, как проходят занятия и познакомим с интерактивной платформой.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Статистика -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Альфа-школа — это...</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
+                    <span class="stat-number">29 000+</span>
+                    <p class="stat-text">Активных учеников</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-book-open"></i></div>
+                    <span class="stat-number">1300</span>
+                    <p class="stat-text">Готовых уроков по математике</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <span class="stat-number">150 000+</span>
+                    <p class="stat-text">Проведенных уроков</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <span class="stat-number">250+</span>
+                    <p class="stat-text">Опытных репетиторов</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-star"></i></div>
+                    <span class="stat-number">16+</span>
+                    <p class="stat-text">Школьных предметов и хобби</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Интересная учеба -->
+    <section style="background-color: #fefce8;">
+        <div class="container">
+            <h2 class="section-title">Интересная учеба — это реально!</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px; font-size: 1.2rem;">
+                Мы разработали программы уроков для 1 - 11 классов, по которым ученики могут подготовиться:
+            </p>
+            <div style="text-align: center; margin-bottom: 50px;">
+                <span class="subject-tag">подготовка к ВПР, ОГЭ, ЕГЭ</span>
+                <span class="subject-tag">подготовка к олимпиадам</span>
+                <span class="subject-tag">улучшение успеваемости</span>
+                <span class="subject-tag">устранение пробелов</span>
+                <span class="subject-tag">помощь с ДЗ</span>
+            </div>
+            <div class="benefit-card" style="max-width: 800px; margin: 0 auto;">
+                <h3><i class="fas fa-gamepad" style="color: #4299e1; margin-right: 10px;"></i> Интерактивные вовлекающие уроки</h3>
+                <p>Преподаватель проводит уроки онлайн в игровой форме. Это позволяет легко усваивать сложнейшие темы, развивать логическое мышление и мотивировать ученика к учебе. Перед началом занятий каждый ребенок проходит тестирование с репетитором. Оно позволяет определить все его сильные и слабые места.</p>
+                <p style="margin-top: 15px;">После этого профессиональные преподаватели составляют для вас индивидуальную программу и готовы проводить уроки в удобное ученику время. Наш игровой сервис порадует любого ребенка, а родители останутся довольны его успехами.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Как устроены занятия? -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Как устроены занятия?</h2>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div style="display: flex; align-items: center; margin-bottom: 50px; flex-wrap: wrap;">
+                    <div style="flex: 0 0 80px; margin-right: 30px;">
+                        <div style="background: #4299e1; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold;">1</div>
+                    </div>
+                    <div style="flex: 1; min-width: 300px;">
+                        <h3>Индивидуальный подход</h3>
+                        <p>Преподаватель проводит уроки онлайн в игровой форме. Это позволяет легко усваивать сложнейшие темы, развивать логическое мышление и мотивировать ученика к учебе. Перед началом занятий каждый ребенок проходит тестирование с репетитором. Оно позволяет определить все его сильные и слабые места.</p>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; flex-wrap: wrap;">
+                    <div style="flex: 0 0 80px; margin-right: 30px;">
+                        <div style="background: #4299e1; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold;">2</div>
+                    </div>
+                    <div style="flex: 1; min-width: 300px;">
+                        <h3>Программа под вас</h3>
+                        <p>После этого профессиональные преподаватели составляют для вас индивидуальную программу и готовы проводить уроки в удобное ученику время. Наш игровой сервис порадует любого ребенка, а родители останутся довольны его успехами.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Наши репетиторы -->
+    <section style="background-color: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title">Наши репетиторы</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; font-size: 1.2rem;">
+                Онлайн-школа Альфа – это, в первую очередь, наши преподаватели!
+            </p>
+            <div class="tutors-grid">
+                <div class="tutor-card">
+                    <div class="tutor-avatar"><i class="fas fa-user-tie"></i></div>
+                    <h3>Алексей Сергеевич Макейчик</h3>
+                    <span class="tutor-subject">Математика Премиум Математика 1-11 класс</span>
+                    <div class="tutor-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span style="color: #4a5568; margin-left: 5px;">5 из 5</span>
+                    </div>
+                    <p><strong>Опыт преподавания:</strong> 5 лет</p>
+                    <p><strong>Специализация:</strong> ПРЕМИУМ-РЕПЕТИТОР. Преподаватель</p>
+                    <p><strong>Образование:</strong> БГЭУ</p>
+                    <a href="#" class="cta-button" style="padding: 10px 25px; margin-top: 15px;">Записаться на урок</a>
+                </div>
+                <div class="tutor-card">
+                    <div class="tutor-avatar"><i class="fas fa-user-graduate"></i></div>
+                    <h3>Ольга Дмитриевна Фильченкова</h3>
+                    <span class="tutor-subject">Русский язык 1-6 класс</span>
+                    <div class="tutor-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span style="color: #4a5568; margin-left: 5px;">4.8 из 5</span>
+                    </div>
+                    <p><strong>Опыт преподавания:</strong> 8 лет</p>
+                    <p><strong>Специализация:</strong> Учитель русского языка и литературы</p>
+                    <p><strong>Образование:</strong> Орловский государственный университет</p>
+                    <a href="#" class="cta-button" style="padding: 10px 25px; margin-top: 15px;">Записаться на урок</a>
+                </div>
+                <div class="tutor-card">
+                    <div class="tutor-avatar"><i class="fas fa-user-md"></i></div>
+                    <h3>Наталья Юрьевна Заморникова</h3>
+                    <span class="tutor-subject">Математика 5-11 класс</span>
+                    <div class="tutor-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span style="color: #4a5568; margin-left: 5px;">5 из 5</span>
+                    </div>
+                    <p><strong>Опыт преподавания:</strong> 7 лет</p>
+                    <p><strong>Специализация:</strong> Компьютерная математика и системный анализ</p>
+                    <p><strong>Образование:</strong> БГУ</p>
+                    <a href="#" class="cta-button" style="padding: 10px 25px; margin-top: 15px;">Записаться на урок</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Что о нас говорят родители и ученики?</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.9 из 5</span>
+                    </div>
+                    <p>Перед тем как привести сюда своего сына, поучилась тут сама))) Репетитор по английскому подготовил меня к тесту TOEFL за 2 месяца – при средненьком уровне! Теперь сын занимается математикой и физикой. Решение всех проблем просто в одном месте нашли!</p>
+                    <div class="review-author">Ольга</div>
+                    <div class="review-source">Отзыв из Youtube</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>5 из 5</span>
+                    </div>
+                    <p>Мне очень нравится заниматься с Екатериной Олеговной! Просто лучший учитель – всегда в хорошем настроении, никогда не прикрикнет даже, не проблема, если нужно перенести занятие. Вот бы в школе так…</p>
+                    <div class="review-author">Света, 5 класс</div>
+                    <div class="review-source">Отзыв из VK</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>4.9 из 5</span>
+                    </div>
+                    <p>Отдал сюда дочку, чтобы помогали готовиться к ОГЭ. Просто космос! Прогресс в геометрической прогрессии! С уровня «проблемы со сложением и вычитанием дробей» дошли до решения задач со звездочкой!</p>
+                    <div class="review-author">Андрей</div>
+                    <div class="review-source">Отзыв из VK</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Почему именно мы? -->
+    <section class="why-us">
+        <div class="container">
+            <h2 class="section-title">Почему именно мы?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Следите за прогрессом</h3>
+                    <p>Обратная связь каждые 4 урока</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-smile-beam"></i></div>
+                    <h3>Учитесь нескучно</h3>
+                    <p>Увлечем и заинтересуем любым предметом</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-couch"></i></div>
+                    <h3>Занимайтесь в комфортном темпе</h3>
+                    <p>Неспешно, вдумчиво и эффективно</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-home"></i></div>
+                    <h3>Выполняйте домашку</h3>
+                    <p>Для закрепления пройденного</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-wallet"></i></div>
+                    <h3>Один баланс на все предметы</h3>
+                    <p>Все школьные предметы и хобби в одном месте. Одинаковая стоимость на все предметы.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Бегущая строка -->
+    <div class="marquee">
+        <div class="marquee-content">
+            Моя Альфа-школа • <span>Нескучные уроки</span> • Все предметы • <span>Опытные репетиторы</span> • Моя Альфа-школа • <span>Нескучные уроки</span> • Все предметы • <span>Опытные репетиторы</span> • Моя Альфа-школа • <span>Нескучные уроки</span> • Все предметы • <span>Опытные репетиторы</span> •
+            Моя Альфа-школа • <span>Нескучные уроки</span> • Все предметы • <span>Опытные репетиторы</span> • Моя Альфа-школа • <span>Нескучные уроки</span> • Все предметы • <span>Опытные репетиторы</span> •
+        </div>
+    </div>
+
+    <!-- Мы лицензированная школа -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Мы лицензированная школа</h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <div style="background: #f0f9ff; padding: 30px; border-radius: 12px; margin-bottom: 30px;">
+                    <h3><i class="fas fa-file-certificate" style="color: #4299e1; margin-right: 10px;"></i> Лицензия на осуществление образовательной деятельности</h3>
+                    <p style="font-size: 1.2rem; margin: 15px 0;">№042106 выдана Департаментом образования и науки города Москвы 27 апреля 2022 г.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-child"></i></div>
+                        <h3>Возможность использовать материнский капитал</h3>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+                        <h3>Все программы одобрены государством</h3>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-award"></i></div>
+                        <h3>Гарантия качественного обучения</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Доступное обучение -->
+    <section style="background-color: #fefce8;">
+        <div class="container">
+            <h2 class="section-title">Доступное обучение для каждой семьи</h2>
+            <div class="finance-options">
+                <div class="finance-card">
+                    <div class="feature-icon"><i class="fas fa-credit-card"></i></div>
+                    <h3>Платите частями — без переплат</h3>
+                    <p>Удобная рассрочка без скрытых комиссий.</p>
+                </div>
+                <div class="finance-card">
+                    <div class="feature-icon"><i class="fas fa-baby"></i></div>
+                    <h3>Материнский капитал</h3>
+                    <p>Родители могут направить часть средств на подготовку ребёнка.</p>
+                </div>
+                <div class="finance-card">
+                    <div class="feature-icon"><i class="fas fa-percentage"></i></div>
+                    <h3>Верните 13% стоимости</h3>
+                    <p>Получите налоговый вычет и уменьшите траты. Подскажем, какие документы понадобятся.</p>
+                </div>
+                <div class="finance-card">
+                    <div class="feature-icon"><i class="fas fa-user-friends"></i></div>
+                    <h3>Бонусы за приглашения</h3>
+                    <p>Приглашайте друзей: вам начислим +3 урока, а другу +2 после первого занятия.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Перспективы -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Перспективы с Альфа-школой</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px; font-size: 1.2rem;">
+                Альфа-школа – это не только интересно, но и выгодно! Вот кем можно стать после занятий с нашими репетиторами:
+            </p>
+            <div class="prospects-grid">
+                <div class="prospect-card">
+                    <h3><i class="fas fa-chart-pie" style="color: #4299e1; margin-right: 10px;"></i> Инвестиции</h3>
+                    <p class="highlight">от 200 000 руб/месяц</p>
+                    <ul style="list-style: none; margin-top: 15px;">
+                        <li><i class="fas fa-arrow-right" style="color: #38a169; margin-right: 8px;"></i> Квонт</li>
+                        <li><i class="fas fa-arrow-right" style="color: #38a169; margin-right: 8px;"></i> Корпоративный финансист</li>
+                        <li><i class="fas fa-arrow-right" style="color: #38a169; margin-right: 8px;"></i> Бизнес-аналитик</li>
+                        <li><i class="fas fa-arrow-right" style="color: #38a169; margin-right: 8px;"></i> Блокчейн-программист</li>
+                    </ul>
+                </div>
+                <div class="prospect-card">
+                    <h3><i class="fas fa-paint-brush" style="color: #4299e1; margin-right: 10px;"></i> Дизайн</h3>
+                    <p class="highlight">от 200 000 руб/месяц</p>
+                    <ul style="list-style: none; margin-top: 15px;">
+                        <li><i class="fas fa-arrow-right" style="color: #38a169; margin-right: 8px;"></i> Гейм-дизайнер</li>
+                        <li><i class="fas fa-arrow-right" style="color: #38a169; margin-right: 8px;"></i> Архитектор виртуальной реальности</li>
+                        <li><i class="fas fa-arrow-right" style="color: #38a169; margin-right: 8px;"></i> Facetrucking-разработчик</li>
+                    </ul>
+                </div>
+                <div class="prospect-card">
+                    <h3><i class="fas fa-laptop-code" style="color: #4299e1; margin-right: 10px;"></i> IT</h3>
+                    <p class="highlight">от 200 000 руб/месяц</p>
+                    <ul style="list-style: none; margin-top: 15px;">
+                        <li><i class="fas fa-arrow-right" style="color: #38a169; margin-right: 8px;"></i> Дизайнер виртуальной среды</li>
+                        <li><i class="fas fa-arrow-right" style="color: #38a169; margin-right: 8px;"></i> Разработчик искусственного интеллекта</li>
+                        <li><i class="fas fa-arrow-right" style="color: #38a169; margin-right: 8px;"></i> Специалист по обработке данных</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="background-color: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title">Ответы на популярные вопросы</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3><i class="fas fa-question-circle" style="color: #4299e1; margin-right: 10px;"></i> Как проходит вводный урок?</h3>
+                    <p>Занятие проходит один на один с репетитором. На первом уроке репетитор проведет тестирование на определение общего уровня знаний. Даст рекомендации и составит программу обучения. Ответит на ваши вопросы по обучению.</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fas fa-question-circle" style="color: #4299e1; margin-right: 10px;"></i> Что необходимо для занятий?</h3>
+                    <p>Для урока вам понадобится только зарегистрироваться, иметь компьютер и доступ к интернету. Все необходимое уже есть на нашей платформе: методические материалы, инструменты, домашние задания, тесты.</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fas fa-question-circle" style="color: #4299e1; margin-right: 10px;"></i> Сколько длится один урок?</h3>
+                    <p>1 урок длится 50 минут.</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fas fa-question-circle" style="color: #4299e1; margin-right: 10px;"></i> Вы помогаете только со школьными предметами?</h3>
+                    <p>У нас есть репетиторы для детей и взрослых, даже для занятий хобби! Заходите, выбирайте и учитесь в удовольствие!</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fas fa-question-circle" style="color: #4299e1; margin-right: 10px;"></i> Можно ли оплатить занятия материнским капиталом?</h3>
+                    <p>Да. Мы можем подготовить для вас документы для оплаты по материнскому капиталу.</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fas fa-question-circle" style="color: #4299e1; margin-right: 10px;"></i> Есть ли у вас рассрочка?</h3>
+                    <p>Для клиентов нашей школы доступна рассрочка до 10 месяцев.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма заявки -->
+    <section id="application">
+        <div class="container">
+            <h2 class="section-title">Заходите на пробный урок и смотрите сами!</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 40px; font-size: 1.2rem;">
+                Заполните информацию об ученике и мы свяжемся с вами в ближайшее время, чтобы подобрать подходящее время проведения пробного занятия!
+            </p>
+            <div class="application-form">
+                <form id="trial-lesson-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Имя родителя *</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Телефон *</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="student-name">Имя ученика *</label>
+                            <input type="text" class="form-control" id="student-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="student-grade">Класс ученика *</label>
+                            <select class="form-control" id="student-grade" required>
+                                <option value="">Выберите класс</option>
+                                <option value="1">1 класс</option>
+                                <option value="2">2 класс</option>
+                                <option value="3">3 класс</option>
+                                <option value="4">4 класс</option>
+                                <option value="5">5 класс</option>
+                                <option value="6">6 класс</option>
+                                <option value="7">7 класс</option>
+                                <option value="8">8 класс</option>
+                                <option value="9">9 класс</option>
+                                <option value="10">10 класс</option>
+                                <option value="11">11 класс</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="subject">Предмет интереса</label>
+                        <select class="form-control" id="subject">
+                            <option value="">Выберите предмет</option>
+                            <option value="math">Математика</option>
+                            <option value="russian">Русский язык</option>
+                            <option value="english">Английский язык</option>
+                            <option value="physics">Физика</option>
+                            <option value="chemistry">Химия</option>
+                            <option value="other">Другой предмет</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="goal">Цель занятий</label>
+                        <textarea class="form-control" id="goal" rows="3" placeholder="Например: подготовка к ЕГЭ, устранение пробелов, повышение успеваемости..."></textarea>
+                    </div>
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button type="submit" class="cta-button" style="font-size: 1.2rem; padding: 16px 50px;">
+                            <i class="fas fa-gift" style="margin-right: 10px;"></i> Получить первый урок бесплатно
+                        </button>
+                        <p style="margin-top: 15px; font-size: 0.9rem; color: #718096;">Нажимая кнопку, вы соглашаетесь с условиями обработки персональных данных</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3 class="footer-title">Альфа-школа</h3>
+                    <p>Все школьные предметы понятным языком. Индивидуальные онлайн-занятия с лучшими репетиторами.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="#" style="color: #cbd5e0; margin-right: 15px; font-size: 1.5rem;"><i class="fab fa-vk"></i></a>
+                        <a href="#" style="color: #cbd5e0; margin-right: 15px; font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
+                        <a href="#" style="color: #cbd5e0; margin-right: 15px; font-size: 1.5rem;"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-title">Предметы</h3>
+                    <div class="footer-links">
+                        <a href="#">Математика</a>
+                        <a href="#">Русский язык</a>
+                        <a href="#">Английский язык</a>
+                        <a href="#">Физика</a>
+                        <a href="#">Химия</a>
+                        <a href="#">Все предметы</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-title">Информация</h3>
+                    <div class="footer-links">
+                        <a href="#">О школе</a>
+                        <a href="#">Репетиторы</a>
+                        <a href="#">Отзывы</a>
+                        <a href="#">Цены</a>
+                        <a href="#">Лицензия</a>
+                        <a href="#">Контакты</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-title">Контакты</h3>
+                    <div class="footer-links">
+                        <p><i class="fas fa-phone-alt" style="margin-right: 10px;"></i> +7 (XXX) XXX-XX-XX</p>
+                        <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> info@myalfaschool.ru</p>
+                        <p><i class="fas fa-clock" style="margin-right: 10px;"></i> Пн-Пт: 9:00-21:00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2023 Альфа-школа. Все права защищены.</p>
+                <p style="margin-top: 10px;">
+                    <a href="#" style="color: #a0aec0; margin: 0 10px;">Политика конфиденциальности</a> | 
+                    <a href="#" style="color: #a0aec0; margin: 0 10px;">Договор-оферта</a> | 
+                    <a href="#" style="color: #a0aec0; margin: 0 10px;">Нашли ошибку?</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Обработка формы
+        document.getElementById('trial-lesson-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Здесь обычно отправка на сервер
+            const name = document.getElementById('name').value;
+            alert(`Спасибо, ${name}! Ваша заявка принята. Мы свяжемся с вами в ближайшее время для уточнения деталей пробного урока.`);
+            
+            // Сброс формы
+            this.reset();
+        });
+        
+        // Плавная прокрутка для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
